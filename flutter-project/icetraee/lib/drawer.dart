@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icetraee/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'main.dart';
+import 'pageview.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key}) : super(key: key);
@@ -37,7 +38,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
               backgroundImage: AssetImage("assets/images/me.jpeg")
             ),
             accountEmail: Text("afifidaffa16@gmail.com"),
-              decoration: BoxDecoration(color: Color(0xFFB71C1C),)
+              decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+                  Colors.red.shade900,
+                  Colors.white54,
+                ],)
+              )
             ),
           DrawerListTile(
             icondata : Icons.contacts,
@@ -61,6 +67,24 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 Navigator.pop(context);
                 logout();
             },
+          ),
+          DrawerListTile(
+            icondata: Icons.arrow_back,
+            title: "Minggu 6", 
+            onTilePressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => pageview()),);
+            },
+          ),
+          Divider(),
+          Padding(padding: EdgeInsets.only(top: 10)),
+          Text("    Labels", style: TextStyle(
+            color: Colors.grey,
+          )),
+          Padding(padding: EdgeInsets.only(top: 10)),
+          DrawerListTile(
+            icondata : Icons.label,
+            title : "Family",
+            onTilePressed: (){},
           ),
         ],
       ),
@@ -89,7 +113,7 @@ class DrawerListTile extends StatelessWidget{
       onTap: onTilePressed,
       dense: true,
       leading: Icon(icondata),
-      title: Text(title, style: TextStyle(fontSize: 16),),
+      title: Text(title, style: TextStyle(fontSize: 14),),
     );
   }
 }
